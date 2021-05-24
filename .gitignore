@@ -1,0 +1,8 @@
+# C/C++: Build
+.build
+
+# C/C++: Binary
+bin
+
+# Editor: Sublime Text 3
+*.sublime-*
