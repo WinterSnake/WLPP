@@ -4,6 +4,7 @@
 
 	- Window Properties Struct
 */
+#pragma once
 
 // Include: Standard Library
 #include <cstdint>
