@@ -4,3 +4,4 @@
 */
 
 // Include: WL
+#include "window/properties.hpp"
