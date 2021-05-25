@@ -30,4 +30,18 @@ namespace WL
 			bool fullscreen;
 		} size;
 	};
+
+	class Window
+	{
+		public:
+			Window(Properties& properties);
+			virtual ~Window();
+
+			// Agnostic Window API
+			static std::unique_ptr<Window> Create(Properties& properties);
+
+		protected:
+			bool running = false;
+			Properties window_properties;
+	};
 }
