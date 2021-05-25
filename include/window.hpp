@@ -13,6 +13,8 @@
 
 namespace WL
 {
+	struct Native_Handle;
+
 	struct Properties
 	{
 		std::string title;
@@ -39,6 +41,7 @@ namespace WL
 
 			// Agnostic Window API
 			static std::unique_ptr<Window> Create(Properties& properties);
+			Native_Handle Get_Native_Handle();
 
 		protected:
 			bool running = false;
