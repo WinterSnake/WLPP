@@ -3,11 +3,12 @@
 	Written by: Ryan Smith
 
 	- Window Properties Struct
+	- Agnostic Window Class
 */
 #pragma once
 
 // Include: Standard Library
-#include <cstdint>
+#include <memory>
 #include <string>
 
 namespace WL
@@ -20,13 +21,13 @@ namespace WL
 		{
 			uint32_t x;
 			uint32_t y;
-			bool centered = true;
+			bool centered;
 		} position;
 		struct
 		{
 			uint32_t width;
 			uint32_t height;
-			bool fullscreen = false;
+			bool fullscreen;
 		} size;
 	};
 }

@@ -5,4 +5,4 @@
 #pragma once
 
 // Include: WL
-#include "window/properties.hpp"
+#include "window.hpp"
