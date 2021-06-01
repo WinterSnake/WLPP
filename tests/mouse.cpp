@@ -1,5 +1,5 @@
 /*
-	Window Library: Window Test
+	Window Library: Mouse Input Test
 	Written by: Ryan Smith
 */
 
@@ -12,7 +12,7 @@
 int main(int argc, char** argv)
 {
 	WL::Properties properties = {
-		.title = "My First Window",
+		.title = "Mouse Input Testing",
 		.size = {
 			.width = 800,
 			.height = 600
@@ -20,6 +20,7 @@ int main(int argc, char** argv)
 	};
 
 	std::unique_ptr<WL::Window> window = WL::Window::Create(properties);
+
 	return 0;
 }
 
