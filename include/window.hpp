@@ -11,10 +11,11 @@
 #include <memory>
 #include <string>
 
+// Include: WL
+#include <event.hpp>
+
 namespace WL
 {
-	struct Native_Handle;
-
 	struct Properties
 	{
 		std::string title;
@@ -41,10 +42,11 @@ namespace WL
 
 			// Agnostic Window API
 			static std::unique_ptr<Window> Create(Properties& properties);
-			Native_Handle Get_Native_Handle();
+			virtual Event Poll_Event() = 0;
+			virtual struct Native_Handle Get_Native_Handle() = 0;
 
 		protected:
-			bool running = false;
+			bool initialized = false;
 			Properties window_properties;
 	};
 }
