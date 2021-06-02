@@ -1,14 +1,26 @@
 /*
+	Window Library
+	Written by: Ryan Smith
 
+	- Agnostic Event Struct
 */
+#pragma once
 
 namespace WL
 {
-	enum class Key
+	enum class EVENT
 	{
-		NONE = -1,
+		END_LOOP = -1,
+		KEY_PRESS = 1,
+		KEY_RELEASE,
+		BUTTON_PRESS,
+		BUTTON_RELEASE,
+	};
+
+	enum class KEY
+	{
 		// Lettes
-		A = 1, B, C, D, E, F, G, H, I, J, K, L, M,
+		A, B, C, D, E, F, G, H, I, J, K, L, M,
 		N, O, P, Q, R, S, T, U, V, W, X, Y, Z,
 		// Numericals
 		D0, D1, D2, D3,	D4,
@@ -20,19 +32,22 @@ namespace WL
 		F1, F2, F3, F4, F5, F6,
 		F7, F8, F9, F10, F11, F12,
 		// Miscellaneous
-		DOWN, LEFT, RIGHT, UP
+		DOWN, LEFT, RIGHT, UP, ESC
 	};
 
 	struct Event
 	{
-		enum class TYPE
+		EVENT type;
+
+		union
 		{
-			END_LOOP = -1,
-			KEY_PRESS = 1,
-			KEY_RELEASE,
-		} type;
+			KEY key;
+		};
 
 		// Operator Overload
-		operator bool() const;
+		operator bool() const
+		{
+			return (type != EVENT::END_LOOP);
+		}
 	};
 }
