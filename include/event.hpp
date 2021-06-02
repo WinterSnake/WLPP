@@ -11,7 +11,8 @@ namespace WL
 	enum class EVENT
 	{
 		END_LOOP = -1,
-		KEY_PRESS = 1,
+		NONE,
+		KEY_PRESS,
 		KEY_RELEASE,
 		BUTTON_PRESS,
 		BUTTON_RELEASE,
