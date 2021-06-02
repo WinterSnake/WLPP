@@ -18,11 +18,6 @@ namespace WL
 	{
 		return std::unique_ptr<Window>(new LinuxWindow_X11(properties));
 	}
-	// Native Handle
-	Native_Handle LinuxWindow_X11::Get_Native_Handle()
-	{
-		return handle;
-	}
 
 	// Linux X11 Window
 	LinuxWindow_X11::LinuxWindow_X11(Properties& properties)
@@ -34,5 +29,17 @@ namespace WL
 	LinuxWindow_X11::~LinuxWindow_X11()
 	{
 
+	}
+
+	// Native Handle
+	Native_Handle LinuxWindow_X11::Get_Native_Handle()
+	{
+		return handle;
+	}
+
+	// Platform Overrides
+	Event LinuxWindow_X11::Poll_Event()
+	{
+		return Window::Poll_Event();
 	}
 }
