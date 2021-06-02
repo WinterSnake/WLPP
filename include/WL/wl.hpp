@@ -5,4 +5,5 @@
 #pragma once
 
 // Include: WL
+#include "event.hpp"
 #include "window.hpp"
