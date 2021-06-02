@@ -20,12 +20,13 @@ namespace WL
 	{
 		_exitloop = true;
 	}
+
 	Event Window::Poll_Event()
 	{
 		if (_exitloop)
 		{
-			return Event {.type = EVENT::END_LOOP};
+			return Event { .type = EVENT::END_LOOP };
 		}
-		return Event {};
+		return Event { .type = EVENT::NONE };
 	}
 }
