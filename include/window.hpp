@@ -42,11 +42,15 @@ namespace WL
 
 			// Agnostic Window API
 			static std::unique_ptr<Window> Create(Properties& properties);
-			virtual Event Poll_Event() = 0;
+			void Exit_Event_Poll();
+			virtual Event Poll_Event();
 			virtual struct Native_Handle Get_Native_Handle() = 0;
 
 		protected:
 			bool initialized = false;
 			Properties window_properties;
+
+		private:
+			bool _exitloop = false;
 	};
 }
