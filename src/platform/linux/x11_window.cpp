@@ -23,12 +23,46 @@ namespace WL
 	LinuxWindow_X11::LinuxWindow_X11(Properties& properties)
 	:Window(properties)
 	{
+		handle.display = XOpenDisplay(nullptr);
+		// Handle display error
+		if (!handle.display) {}
 
+		// Create screen and attributes
+		int screenID = DefaultScreen(handle.display);
+
+		XSetWindowAttributes attributes = {
+			.background_pixel = WhitePixel(handle.display, screenID),
+			.event_mask = (
+				ExposureMask    | PointerMotionMask |
+				KeyPressMask    | KeyReleaseMask    |
+				ButtonPressMask | ButtonReleaseMask
+			)
+		};
+
+		// Handle centering
+		// Handle fullscreen
+
+		// Create window
+		handle.window = XCreateWindow(
+			handle.display, RootWindow(handle.display, screenID),
+			properties.position.x, properties.position.y,
+			properties.size.width, properties.size.height,
+			0, DefaultDepth(handle.display, screenID), InputOutput,
+			DefaultVisual(handle.display, screenID),
+			CWEventMask | CWBackPixel, &attributes
+		);
+
+		// Set title
+		XStoreName(handle.display, handle.window, properties.title.c_str());
+
+		// Display window
+		XMapWindow(handle.display, handle.window);
 	}
 	
 	LinuxWindow_X11::~LinuxWindow_X11()
 	{
-
+		XDestroyWindow(handle.display, handle.window);
+		XCloseDisplay(handle.display);
 	}
 
 	// Native Handle
@@ -40,6 +74,21 @@ namespace WL
 	// Platform Overrides
 	Event LinuxWindow_X11::Poll_Event()
 	{
-		return Window::Poll_Event();
+		Event event = Window::Poll_Event();
+		// Exit Loop Event
+		if (event.type == EVENT::END_LOOP)
+		{
+			return event;
+		}
+		// X11 Event Handler
+		::XEvent _event;
+		XNextEvent(handle.display, &_event);
+
+		switch (event.type)
+		{
+
+		}
+
+		return event;
 	}
 }
