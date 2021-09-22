@@ -1,0 +1,2 @@
+option('build_tests', type: 'boolean', value: true,  description: 'Build tests')
+option('display_server', type: 'combo', choices: ['x11', 'wayland'], value: 'x11', description: 'Linux display server')
